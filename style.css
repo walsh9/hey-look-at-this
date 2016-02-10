@@ -1,0 +1,51 @@
+body {
+  font-family: sans-serif;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+#share-form {
+  width: 90%;
+  margin: auto;
+  max-width: 800px;
+}
+
+textarea, label, input {
+  display: block;
+  width: 100%;
+}
+
+#share-zone {
+  width: 500px;
+  margin: auto;
+}
+
+.divider {
+  margin: 5px;
+  border-bottom: 1px solid black;
+}
+
+.spacer {
+  height: 1em;
+}
+
+.comment {
+  text-align: center;
+}
+
+.share-link {
+  margin: 2em 0;
+  text-align: center;
+}
+
+.share-link a {
+  font-size: 0.65em;
+}
+
+
+.hidden {
+  display: none;
+}
