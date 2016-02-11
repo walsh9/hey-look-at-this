@@ -1,4 +1,4 @@
-# Hey, look at this
+# Hey, look at this.
 
 Sometimes I want to share a few Tweets as a group but something like Storify is just too much of a hassle.
 
@@ -11,6 +11,7 @@ You can also put little comments.
 # Todo
 
 - Tests
-- Allow embedding other things (instagram?, youtube?)
-- Maybe do this with oembed
+- Support embeds from other links (e.g. Instagram, Youtube, Soundcloud...)
+- Maybe use oembed for this
+- Connect with a URL shortening API
 - Clean up code
