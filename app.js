@@ -31,7 +31,7 @@ var addContentFromLine = function(line) {
     container.className = "spacer";
   } else {
     container.className = "comment";
-    container.innerText = decodeURIComponent(line);
+    container.textContent = decodeURIComponent(line);
   }
 };  
 
