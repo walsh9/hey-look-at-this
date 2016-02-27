@@ -1,16 +1,46 @@
 'use strict';
 
-var isTweetUrl = function(string) {
-  return /^https?:\/\/(www.|mobile.|m.)?twitter.com\/[A-Za-z0-9_]+\/status\/[0-9]+$/.test(string);
+var embedTypes = { 
+  twitter: {
+    class: "tweet",
+    pattern: /^https?:\/\/(www.|mobile.|m.)?twitter.com\/[A-Za-z0-9_]+\/status\/[0-9]+$/,
+    urlPattern: /^t=[0-9]+$/,
+    urlEncode: function(line) { return "t=" + line.split('/').splice(-1)[0] },
+    createEmbed: function(container, line) {
+      var tweetId = line.slice(2);
+      twttr.widgets.createTweet(tweetId, container);
+    }
+  }
 }
 
-var isTweet = function(string) {
-  return /^t=[0-9]+$/.test(string);
+// Determine embedType for urls pasted in textarea
+var getPastedEmbedType = function(string) {
+  for (var key in embedTypes) {
+    if ( embedTypes.hasOwnProperty(key) ) {
+      if ( embedTypes[key].pattern.test(string) ) {
+        return key;
+      }
+    }
+  }
+  return null;
+}
+
+// Determine embedType for part of shared url
+var getLineEmbedType = function(string) {
+  for (var key in embedTypes) {
+    if ( embedTypes.hasOwnProperty(key) ) {
+      if ( embedTypes[key].urlPattern.test(string) ) {
+        return key;
+      }
+    }
+  }
+  return null;
 }
 
 var urlEncodeLine = function(line) {
-  if (isTweetUrl(line)) {
-    return "t=" + line.split('/').splice(-1)[0];
+  var embedType = getPastedEmbedType(line);
+  if (embedType !== null) {
+    return embedTypes[embedType].urlEncode(line);
   } else if (/^-+$/.test(line)) {
     return '-';
   } else {
@@ -21,10 +51,10 @@ var urlEncodeLine = function(line) {
 var addContentFromLine = function(line) {
   var container = document.createElement('div');
   document.getElementById('share-zone').appendChild(container);
-  if (isTweet(line)) {
-    container.className = "tweet";
-    var tweetId = line.slice(2);
-    twttr.widgets.createTweet(tweetId, container);
+  var embedType = getLineEmbedType(line);
+  if (embedType !== null) {
+    container.className = embedTypes[embedType].class;
+    embedTypes[embedType].createEmbed(container, line);
   } else if (line === "-") {
     container.className = "divider";
   } else if (line === "") {
