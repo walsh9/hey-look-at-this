@@ -1,15 +1,42 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 body {
-  font-family: sans-serif;
+  font-family: Muli, sans-serif;
+  background-color: #207790;
+  color: #034B5F;
+  height: 100%;
+}
+
+main {
+  width: 600px;
+  background-color: #ffffff;
+  padding: 1em 0;
+  margin: 0 auto;
+  height: 100%;
+}
+
+body, div, p, h1 {
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
+  font-family: Ovo, serif;
+  font-size: 2.5em;
   text-align: center;
-  margin-bottom: 1em;
+  margin-bottom: 0.6em;
+  color: #e7472e;
 }
 
 #share-form {
   width: 90%;
-  margin: auto;
+  margin: 0 auto;
   max-width: 800px;
 }
 
@@ -19,13 +46,14 @@ textarea, label, input {
 }
 
 #share-zone {
-  width: 500px;
-  margin: auto;
+  width: 520px;
+  margin: 0 auto;
+  height: 100%;
 }
 
 .divider {
-  margin: 5px;
-  border-bottom: 1px solid black;
+  margin: 1em 0;
+  border-bottom: 5px solid #0E6178;
 }
 
 .spacer {
@@ -34,17 +62,21 @@ textarea, label, input {
 
 .comment {
   text-align: center;
+  line-height: 1.5;
+}
+
+.embed {
+  margin: 1em 0;
 }
 
 .share-link {
-  margin: 2em 0;
+  margin: 2em 0 0;
   text-align: center;
 }
 
 .share-link a {
   font-size: 0.65em;
 }
-
 
 .hidden {
   display: none;
