@@ -41,6 +41,21 @@
         });
         container.appendChild(iframe);
       }
+    },
+    instagram: {
+      class: "instagram",
+      pattern: /^https?:\/\/(instagr.am|(www\.)?instagram.com)\/p\/[a-zA-Z0-9\-_#?/=:]+/,
+      urlPattern: /^i=[a-zA-Z0-9]+$/,
+      urlEncode: function(line) { return "i="  + line.split('/p/').splice(-1)[0].split('/')[0]; },
+      createEmbed: function(container, line) {
+        var photoUrl = "//instagram.com/p/" + line.slice(2) + "/embed/";
+        var iframe = Viewer.createIframe({
+          width: 520,
+          height: 600,
+          src: photoUrl
+        });
+        container.appendChild(iframe);
+      }
     }
   };
 
