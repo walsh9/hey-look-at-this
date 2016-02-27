@@ -44,7 +44,7 @@
     },
     instagram: {
       class: "instagram",
-      pattern: /^https?:\/\/(instagr.am|(www\.)?instagram.com)\/p\/[a-zA-Z0-9\-_#?/=:]+/,
+      pattern: /^https?:\/\/(instagr.am|(www\.)?instagram.com)\/p\/[a-zA-Z0-9\-_#?/=]+/,
       urlPattern: /^i=[a-zA-Z0-9]+$/,
       urlEncode: function(line) { return "i="  + line.split('/p/').splice(-1)[0].split('/')[0]; },
       createEmbed: function(container, line) {
@@ -53,6 +53,21 @@
           width: 520,
           height: 600,
           src: photoUrl
+        });
+        container.appendChild(iframe);
+      }
+    },
+    vine: {
+      class: "vine",
+      pattern: /^https?:\/\/(www\.)?vine.co\/v\/[a-zA-Z0-9\-_#?/=]+/,
+      urlPattern: /^v=[a-zA-Z0-9]+$/,
+      urlEncode: function(line) { return "v="  + line.split('/v/').splice(-1)[0].split('/')[0]; },
+      createEmbed: function(container, line) {
+        var vineUrl = "https://vine.co/v/" + line.slice(2) + "/embed/simple";
+        var iframe = Viewer.createIframe({
+          width: 520,
+          height: 520,
+          src: vineUrl
         });
         container.appendChild(iframe);
       }
