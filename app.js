@@ -8,7 +8,7 @@ var embedTypes = {
     urlEncode: function(line) { return "t=" + line.split('/').splice(-1)[0] },
     createEmbed: function(container, line) {
       var tweetId = line.slice(2);
-      twttr.widgets.createTweet(tweetId, container);
+      twttr.widgets.createTweet(tweetId, container, {width: 520});
     }
   },
   youtube: {
@@ -20,8 +20,8 @@ var embedTypes = {
       var videoUrl = "//www.youtube.com/embed/" + line.slice(2);
       var iframe = document.createElement("IFRAME");
       iframe.setAttribute("type", "text/html");
-      iframe.setAttribute("width", 500);
-      iframe.setAttribute("height", 282);
+      iframe.setAttribute("width", 520);
+      iframe.setAttribute("height", 293);
       iframe.setAttribute("scrolling", "no"); 
       iframe.setAttribute("frameborder", "no");
       iframe.setAttribute("src", videoUrl);
@@ -37,7 +37,8 @@ var embedTypes = {
       var scUrl = "//w.soundcloud.com/player/?url=soundcloud.com/" + line.slice(2);
       var iframe = document.createElement("IFRAME");
       iframe.setAttribute("type", "text/html");
-      iframe.setAttribute("width", 500);
+      iframe.setAttribute("width", 520);
+      iframe.setAttribute("height", 165);
       iframe.setAttribute("scrolling", "no"); 
       iframe.setAttribute("frameborder", "no");
       iframe.setAttribute("src", scUrl);
@@ -86,7 +87,7 @@ var addContentFromLine = function(line) {
   document.getElementById('share-zone').appendChild(container);
   var embedType = getLineEmbedType(line);
   if (embedType !== null) {
-    container.className = embedTypes[embedType].class;
+    container.className = "embed " + embedTypes[embedType].class;
     embedTypes[embedType].createEmbed(container, line);
   } else if (line === "-") {
     container.className = "divider";
