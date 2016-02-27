@@ -10,6 +10,21 @@ var embedTypes = {
       var tweetId = line.slice(2);
       twttr.widgets.createTweet(tweetId, container);
     }
+  },
+  youtube: {
+    class: "youtube",
+    pattern: /^https?:\/\/(youtu\.be\/|(www\.)?youtube\.com\/watch(\.php)?\?.*v=)[a-zA-Z0-9\-_?=]+$/,
+    urlPattern: /^y=[a-zA-Z0-9\-_?=]+$/,
+    urlEncode: function(line) { return "y="  + line.split('v=').splice(-1)[0].split(".be/").splice(-1)[0] },
+    createEmbed: function(container, line) {
+      var videoUrl = "http://www.youtube.com/embed/" + line.slice(2);
+      var iframe = document.createElement("IFRAME");
+      iframe.setAttribute("type", "text/html");
+      iframe.setAttribute("width", 500);
+      iframe.setAttribute("height", 282);
+      iframe.setAttribute("src", videoUrl);
+      container.appendChild(iframe);
+    }
   }
 }
 
