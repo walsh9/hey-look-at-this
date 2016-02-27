@@ -11,7 +11,7 @@ You can also put little comments.
 # Todo
 
 - Tests
-- Support embeds from other links (e.g. Instagram, Youtube, Soundcloud...)
+- Support embeds from other links (e.g. Instagram, etc...)
 - Maybe use oembed for this
 - Connect with a URL shortening API
 - Clean up code
