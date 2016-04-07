@@ -9,7 +9,7 @@
       urlEncode: function(line) { return "t=" + line.split('/').splice(-1)[0]; },
       createEmbed: function(container, line) {
         var tweetId = line.slice(2);
-        twttr.widgets.createTweet(tweetId, container, {width: 520});
+        twttr.widgets.createTweet(tweetId, container, {width: 520, conversation: 'none'});
       }
     },
     youtube: {
